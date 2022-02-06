@@ -1,0 +1,36 @@
+﻿<Window
+    x:Class="NavTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NavTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
+    mc:Ignorable="d">
+
+    <Grid x:Name="RootGrid" RowSpacing="0" Background="Transparent" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{ThemeResource BackgroundLevel0}">
+          
+            <!--<Button Content="Test" Background="Red"/>-->
+        </Grid>
+        
+        <NavigationView Grid.Row="1" x:Name="MainNavigationView" Background="{ThemeResource BackgroundLevel0}" IsBackButtonVisible="Collapsed">
+
+            <Grid
+                    x:Name="grid"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Canvas.ZIndex="0">
+
+                <Frame x:Name="PageContent" />
+
+            </Grid>
+        </NavigationView>
+
+
+    </Grid>
+</Window>
