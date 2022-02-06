@@ -6,9 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    Background="{ThemeResource BackgroundLevel1}"
     >
 
-    <Grid Background="Transparent">
+    <Grid>
         <StackPanel>
             <RadioButton x:Name="SystemRadioButton" Content="System" Tag="System" Checked="ThemeRadioButton_Checked" GroupName="Theme" />
             <RadioButton x:Name="DarkRadioButton" Content="Dark" Tag="Dark" Checked="ThemeRadioButton_Checked" GroupName="Theme" />

@@ -7,15 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
     mc:Ignorable="d">
 
-    <Grid x:Name="RootGrid" RowSpacing="0" Background="Transparent" >
+    <Grid x:Name="RootGrid" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="{ThemeResource BackgroundLevel0}">
-          
-            <!--<Button Content="Test" Background="Red"/>-->
+        <Grid Grid.Row="0" x:Name="TitlebarGrid" Background="{ThemeResource BackgroundLevel0}">
+            <TextBlock Text="App Title" VerticalAlignment="Center" HorizontalAlignment="Left" />
         </Grid>
         
         <NavigationView Grid.Row="1" x:Name="MainNavigationView" Background="{ThemeResource BackgroundLevel0}" IsBackButtonVisible="Collapsed">

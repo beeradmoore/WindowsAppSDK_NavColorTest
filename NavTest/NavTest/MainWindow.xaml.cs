@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using NavTest.UserControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,16 +30,19 @@ namespace NavTest
     {
         bool _isCustomizationSupported;
         ThemeWatcher _themeWatcher;
+
+
         public MainWindow()
         {
+            _isCustomizationSupported = AppWindowTitleBar.IsCustomizationSupported();
+
             this.InitializeComponent();
 
-           
+
             _themeWatcher = new ThemeWatcher();
             _themeWatcher.ThemeChanged += ThemeWatcher_ThemeChanged;
             _themeWatcher.Start();
 
-            _isCustomizationSupported = AppWindowTitleBar.IsCustomizationSupported();
 
             if (_isCustomizationSupported)
             {                
@@ -56,6 +60,14 @@ namespace NavTest
             }
             else
             {
+                RootGrid.RowDefinitions[0].Height = new GridLength(28);
+
+                ExtendsContentIntoTitleBar = true;
+                SetTitleBar(TitlebarGrid);
+
+
+                var fakeMinMaxCloseButtons = new FakeMinMaxCloseButtons();
+                TitlebarGrid.Children.Add(fakeMinMaxCloseButtons);
 
             }
 
@@ -90,6 +102,7 @@ namespace NavTest
             }
             else
             {
+
 
             }
         }
@@ -197,7 +210,7 @@ namespace NavTest
         }
         */
 
-                AppWindow GetAppWindowForCurrentWindow()
+         AppWindow GetAppWindowForCurrentWindow()
         {
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             var myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);

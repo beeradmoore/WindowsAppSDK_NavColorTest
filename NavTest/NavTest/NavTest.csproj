@@ -13,6 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="ThemePickerPage.xaml" />
+    <None Remove="UserControls\FakeMinMaxCloseButtons.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="ThemePickerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UserControls\FakeMinMaxCloseButtons.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

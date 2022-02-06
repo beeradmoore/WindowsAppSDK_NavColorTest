@@ -23,16 +23,12 @@
                             <Color x:Key="ButtonInactiveBackgroundColor">#202020</Color>
                             <Color x:Key="ButtonInactiveForegroundColor">#737373</Color>
                             <Color x:Key="ButtonPressedBackgroundColor">#292929</Color>
-                            <Color x:Key="ButtonPressedForegroundColor">#A7A7A7</Color>
-
-                
-
+                            <Color x:Key="ButtonPressedForegroundColor">#A7A7A7</Color>                            
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="Light">
                             <Color x:Key="BackgroundLevel0">#F3F3F3</Color>
                             <Color x:Key="BackgroundLevel1">#F9F9F9</Color>
                             <Color x:Key="BackgroundLevel2">#FDFDFD</Color>
-
 
                             <Color x:Key="ButtonBackgroundColor">#F3F3F3</Color>
                             <Color x:Key="ButtonForegroundColor">#000000</Color>
@@ -42,27 +38,20 @@
                             <Color x:Key="ButtonInactiveForegroundColor">#9B9B9B</Color>
                             <Color x:Key="ButtonPressedBackgroundColor">#EDEDED</Color>
                             <Color x:Key="ButtonPressedForegroundColor">#5F5F5F</Color>
-                            
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="HighContrast">
                             
                         </ResourceDictionary>
                     </ResourceDictionary.ThemeDictionaries>
+                    
                 </ResourceDictionary>
 
-                <!--
-                <ResourceDictionary>
-              
-                </ResourceDictionary>
-                -->
+
+                
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
 
-            <Style TargetType="Page">
-                <Setter Property="Background" Value="Red" />
 
-            </Style>
-            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
