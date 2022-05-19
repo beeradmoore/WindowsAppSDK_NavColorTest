@@ -7,11 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <!-- Source is from ~\.nuget\packages\microsoft.windowsappsdk\1.0.0\lib\net5.0-windows10.0.17763.0\Microsoft.WinUI\Themes\generic.xaml -->
-
+    <!-- Source is from %HOMEPATH%\.nuget\packages\microsoft.windowsappsdk\1.0.0\lib\net5.0-windows10.0.17763.0\Microsoft.WinUI\Themes\generic.xaml -->
+    
     <UserControl.Resources>
-        <!--
-        <Style x:Key="WindowCaptionButton" TargetType="Button">
+   
+        <Style x:Key="FakeWindowCaptionButton" TargetType="Button">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Background" Value="{ThemeResource WindowCaptionBackground}" />
             <Setter Property="IsTabStop" Value="False" />
@@ -32,30 +32,35 @@
 
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
-                                    <VisualStateGroup.Transitions>
-                                        <VisualTransition From="PointerOver" To="Normal">
-                                            <Storyboard>
-                                                <ColorAnimation Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="(UIElement.Background).(SolidColorBrush.Color)" To="{Binding Color, Source={ThemeResource WindowCaptionButtonBackground}}" Duration="0:0:0.2"/>
-                                                <ColorAnimation Storyboard.TargetName="Path" Storyboard.TargetProperty="(UIElement.Stroke).(SolidColorBrush.Color)" To="{Binding Color, Source={ThemeResource WindowCaptionButtonStroke}}" Duration="0:0:0.1"/>
-                                            </Storyboard>
-                                        </VisualTransition>
-                                    </VisualStateGroup.Transitions>
-
                                     <VisualState x:Name="Normal">
                                         <VisualState.Setters>
                                             <Setter Target="LayoutRoot.Background" Value="{ThemeResource WindowCaptionButtonBackground}" />
-                                            <Setter Target="Path.Stroke" Value="{ThemeResource WindowCaptionButtonStroke}" />
+                                            <Setter Target="Path.Stroke" Value="{ThemeResource WindowCaptionForeground}" />
                                         </VisualState.Setters>
                                     </VisualState>
 
                                     <VisualState x:Name="PointerOver">
                                         <VisualState.Setters>
                                             <Setter Target="LayoutRoot.Background" Value="{ThemeResource WindowCaptionButtonBackgroundPointerOver}" />
-                                            <Setter Target="Path.Stroke" Value="{ThemeResource WindowCaptionButtonStrokePointerOver}" />
+                                            <Setter Target="Path.Stroke" Value="{ThemeResource WindowCaptionForeground}" />
                                         </VisualState.Setters>
                                     </VisualState>
 
                                     <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="LayoutRoot.Background" Value="{ThemeResource WindowCaptionButtonBackgroundPressed}" />
+                                            <Setter Target="Path.Stroke" Value="{ThemeResource WindowCaptionForegroundDisabled}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <!-- these 2 states are only for Close button, needed because they use fixed colors for a theme and cannot be changed by user -->
+                                    <VisualState x:Name="CloseButtonPointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Target="LayoutRoot.Background" Value="{ThemeResource WindowCaptionButtonBackgroundPointerOver}" />
+                                            <Setter Target="Path.Stroke" Value="{ThemeResource WindowCaptionButtonStrokePointerOver}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <VisualState x:Name="CloseButtonPressed">
                                         <VisualState.Setters>
                                             <Setter Target="LayoutRoot.Background" Value="{ThemeResource WindowCaptionButtonBackgroundPressed}" />
                                             <Setter Target="Path.Stroke" Value="{ThemeResource WindowCaptionButtonStrokePressed}" />
@@ -97,6 +102,7 @@
             </Setter>
         </Style>
 
+<!--
         <Style TargetType="ContentControl" x:Key="WindowChromeStyle">
             <Setter Property="Template">
                 <Setter.Value>
@@ -128,6 +134,12 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ClientAreaPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            ContentTransitions="{TemplateBinding ContentTransitions}"
+                            Foreground="{TemplateBinding Foreground}"/>
+
                             <Grid x:Name="TitleBarMinMaxCloseContainer"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
@@ -184,11 +196,6 @@
                                     </Button>
                                 </Grid>
                             </Grid>
-                            <ContentPresenter x:Name="ClientAreaPresenter"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            ContentTransitions="{TemplateBinding ContentTransitions}"
-                            Foreground="{TemplateBinding Foreground}"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -199,32 +206,80 @@
 
     <!--<ContentControl x:Name="MainContentControl" Style="{StaticResource WindowChromeStyle}" />-->
 
-    
+
     <Grid x:Name="TitleBarMinMaxCloseContainer"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
+          
+                Margin="0,0,0,0"
                             Visibility="{Binding CaptionVisibility, RelativeSource={RelativeSource TemplatedParent}}">
-        <Grid x:Name="MinMaxCloseContainer"
+        <Grid Grid.Column="0">
+            <Button Content="Test" Background="Green">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Target="Background" Value="Blue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Target="Background" Value="Red" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+        </Grid>
+        
+        <!--
+        <Grid Grid.Column="1" x:Name="MinMaxCloseContainer"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 ColumnDefinitions="Auto,Auto,Auto">
             <Button x:Name="MinimizeButton"
-                                        Style="{StaticResource WindowCaptionButton}"
+                                        Style="{StaticResource FakeWindowCaptionButton}"
                                         AutomationProperties.Name="Minimize"
                                         AutomationProperties.AutomationId="_MinimizeButton"
                                         Grid.Column="0"
                                         Content="M 0 0 H 10">
+
+                <Button.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <StaticResource x:Key="WindowCaptionButtonBackgroundPointerOver" ResourceKey="CloseButtonBackgroundPointerOver"/>
+                                <StaticResource x:Key="WindowCaptionButtonBackgroundPressed" ResourceKey="CloseButtonBackgroundPressed"/>
+                                <StaticResource x:Key="WindowCaptionButtonStrokePointerOver" ResourceKey="CloseButtonStrokePointerOver"/>
+                                <StaticResource x:Key="WindowCaptionButtonStrokePressed" ResourceKey="CloseButtonStrokePressed"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="Dark">
+                                <StaticResource x:Key="WindowCaptionButtonBackgroundPointerOver" ResourceKey="CloseButtonBackgroundPointerOver"/>
+                                <StaticResource x:Key="WindowCaptionButtonBackgroundPressed" ResourceKey="CloseButtonBackgroundPressed"/>
+                                <StaticResource x:Key="WindowCaptionButtonStrokePointerOver" ResourceKey="CloseButtonStrokePointerOver"/>
+                                <StaticResource x:Key="WindowCaptionButtonStrokePressed" ResourceKey="CloseButtonStrokePressed"/>
+                            </ResourceDictionary>
+                            <ResourceDictionary x:Key="HighContrast">
+                                <StaticResource x:Key="WindowCaptionButtonBackgroundPointerOver" ResourceKey="CloseButtonBackgroundPointerOver"/>
+                                <StaticResource x:Key="WindowCaptionButtonBackgroundPressed" ResourceKey="CloseButtonBackgroundPressed"/>
+                                <StaticResource x:Key="WindowCaptionButtonStrokePointerOver" ResourceKey="CloseButtonStrokePointerOver"/>
+                                <StaticResource x:Key="WindowCaptionButtonStrokePressed" ResourceKey="CloseButtonStrokePressed"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </Button.Resources>
+                
             </Button>
 
             <Button x:Name="MaximizeButton"
-                                        Style="{StaticResource WindowCaptionButton}"
+                                        Style="{StaticResource FakeWindowCaptionButton}"
                                         AutomationProperties.Name="Maximize"
                                         AutomationProperties.AutomationId="_MaximizeButton"
                                         Grid.Column="1"
                                         Content="M 1.516 -0.001 L 7.451 0.009 C 8.751 0.019 9 1 8.981 1.477 L 9.002 7.558 M 9.002 7.547 C 8.929 8.669 8 9 7.43 9.015 L 1.464 9.005 C 0.374 8.973 0 8 -0.004 7.484 L -0.004 1.477 C 0 1 0.415 0.009 1.527 -0.001">
             </Button>
             <Button x:Name="CloseButton"
-                                        Style="{StaticResource WindowCaptionButton}"
+                                        Style="{StaticResource FakeWindowCaptionButton}"
                                         AutomationProperties.Name="Close"
                                         AutomationProperties.AutomationId="_CloseButton"
                                         Grid.Column="2"
@@ -255,6 +310,7 @@
                 </Button.Resources>
             </Button>
         </Grid>
+        -->
     </Grid>
-    
+
 </UserControl>

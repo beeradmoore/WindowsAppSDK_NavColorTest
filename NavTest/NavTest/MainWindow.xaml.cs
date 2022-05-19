@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
@@ -63,12 +64,15 @@ namespace NavTest
                 RootGrid.RowDefinitions[0].Height = new GridLength(28);
 
                 ExtendsContentIntoTitleBar = true;
-                SetTitleBar(TitlebarGrid);
+                SetTitleBar(AppTitleBar);
 
 
-                var fakeMinMaxCloseButtons = new FakeMinMaxCloseButtons();
-                TitlebarGrid.Children.Add(fakeMinMaxCloseButtons);
+                var appWindow = GetAppWindowForCurrentWindow();
+                appWindow.Title = "NavTest";
 
+
+                //var fakeMinMaxCloseButtons = new FakeMinMaxCloseButtons();
+                //TitlebarGrid.Children.Add(fakeMinMaxCloseButtons);\
             }
 
             UpdateColors(((App)Application.Current).GlobalElementTheme);
@@ -91,6 +95,7 @@ namespace NavTest
                 var appWindow = GetAppWindowForCurrentWindow();
                 var appWindowTitleBar = appWindow.TitleBar;
 
+                /*
                 appWindowTitleBar.ButtonBackgroundColor = (Color)theme["ButtonBackgroundColor"];
                 appWindowTitleBar.ButtonForegroundColor = (Color)theme["ButtonForegroundColor"];
                 appWindowTitleBar.ButtonHoverBackgroundColor = (Color)theme["ButtonHoverBackgroundColor"];
@@ -99,11 +104,21 @@ namespace NavTest
                 appWindowTitleBar.ButtonInactiveForegroundColor = (Color)theme["ButtonInactiveForegroundColor"];
                 appWindowTitleBar.ButtonPressedBackgroundColor = (Color)theme["ButtonPressedBackgroundColor"];
                 appWindowTitleBar.ButtonPressedForegroundColor = (Color)theme["ButtonPressedForegroundColor"];
+                */
             }
             else
             {
+                var res = Application.Current.Resources;
 
+                // Removes the tint on title bar
+                res["WindowCaptionBackground"] = Colors.Transparent;
+                // Sets the tint of the forground of the buttons
+                res["WindowCaptionForeground"] = theme["TitleBarForground"];
+                res["WindowCaptionButtonBackgroundPointerOver"] = theme["TitleBarHover"];
+                //TitleBarBackground
+                //TitleBarHover
 
+                RepaintCurrentWindow();
             }
         }
 
@@ -120,6 +135,7 @@ namespace NavTest
                 var appWindow = GetAppWindowForCurrentWindow();
                 var appWindowTitleBar = appWindow.TitleBar;
 
+                /*
                 appWindowTitleBar.ButtonBackgroundColor = (Color)theme["ButtonBackgroundColor"];
                 appWindowTitleBar.ButtonForegroundColor = (Color)theme["ButtonForegroundColor"];
                 appWindowTitleBar.ButtonHoverBackgroundColor = (Color)theme["ButtonHoverBackgroundColor"];
@@ -128,6 +144,7 @@ namespace NavTest
                 appWindowTitleBar.ButtonInactiveForegroundColor = (Color)theme["ButtonInactiveForegroundColor"];
                 appWindowTitleBar.ButtonPressedBackgroundColor = (Color)theme["ButtonPressedBackgroundColor"];
                 appWindowTitleBar.ButtonPressedForegroundColor = (Color)theme["ButtonPressedForegroundColor"];
+                */
 
                 /*
                 BackgroundColor
@@ -138,7 +155,17 @@ namespace NavTest
             }
             else
             {
+                var res = Microsoft.UI.Xaml.Application.Current.Resources;
 
+                // Removes the tint on title bar
+                res["WindowCaptionBackground"] = Colors.Transparent;
+                // Sets the tint of the forground of the buttons
+                res["WindowCaptionForeground"] = theme["TitleBarForground"];
+                res["WindowCaptionButtonBackgroundPointerOver"] = theme["TitleBarHover"];
+                //TitleBarBackground
+                //TitleBarHover
+
+                RepaintCurrentWindow();
             }
 
 
@@ -187,6 +214,24 @@ namespace NavTest
                 {
                     UpdateColorsDark();
                 }
+            }          
+        }
+
+        // to trigger repaint tracking task id 38044406
+        void RepaintCurrentWindow()
+        {
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+
+            var activeWindow = Win32.GetActiveWindow();
+            if (hWnd == activeWindow)
+            {
+                Win32.SendMessage(hWnd, Win32.WM_ACTIVATE, Win32.WA_INACTIVE, IntPtr.Zero);
+                Win32.SendMessage(hWnd, Win32.WM_ACTIVATE, Win32.WA_ACTIVE, IntPtr.Zero);
+            }
+            else
+            {
+                Win32.SendMessage(hWnd, Win32.WM_ACTIVATE, Win32.WA_ACTIVE, IntPtr.Zero);
+                Win32.SendMessage(hWnd, Win32.WM_ACTIVATE, Win32.WA_INACTIVE, IntPtr.Zero);
             }
         }
 
@@ -210,12 +255,11 @@ namespace NavTest
         }
         */
 
-         AppWindow GetAppWindowForCurrentWindow()
+        AppWindow GetAppWindowForCurrentWindow()
         {
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             var myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             return AppWindow.GetFromWindowId(myWndId);
         }
-
     }
 }

@@ -9,9 +9,17 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!-- Other merged dictionaries here -->
 
+
                 <ResourceDictionary>
+                    
                     <ResourceDictionary.ThemeDictionaries>
+
                         <ResourceDictionary x:Key="Dark">
+
+                            <Color x:Key="TitleBarBackground">#202020</Color>
+                            <Color x:Key="TitleBarForground">#FFFFFF</Color>
+                            <Color x:Key="TitleBarHover">#191919</Color>
+                            
                             <Color x:Key="BackgroundLevel0">#202020</Color>
                             <Color x:Key="BackgroundLevel1">#272727</Color>
                             <Color x:Key="BackgroundLevel2">#323232</Color>
@@ -23,9 +31,18 @@
                             <Color x:Key="ButtonInactiveBackgroundColor">#202020</Color>
                             <Color x:Key="ButtonInactiveForegroundColor">#737373</Color>
                             <Color x:Key="ButtonPressedBackgroundColor">#292929</Color>
-                            <Color x:Key="ButtonPressedForegroundColor">#A7A7A7</Color>                            
+                            <Color x:Key="ButtonPressedForegroundColor">#A7A7A7</Color>
+                            <Color x:Key="FakeWindowCaptionButtonBackground">#FF0000</Color>
+  
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="Light">
+
+
+                            <Color x:Key="TitleBarBackground">#F3F3F3</Color>
+                            <Color x:Key="TitleBarForground">#000000</Color>
+                            <Color x:Key="TitleBarHover">#E6E6E6</Color>
+                            
+                            
                             <Color x:Key="BackgroundLevel0">#F3F3F3</Color>
                             <Color x:Key="BackgroundLevel1">#F9F9F9</Color>
                             <Color x:Key="BackgroundLevel2">#FDFDFD</Color>
@@ -38,6 +55,11 @@
                             <Color x:Key="ButtonInactiveForegroundColor">#9B9B9B</Color>
                             <Color x:Key="ButtonPressedBackgroundColor">#EDEDED</Color>
                             <Color x:Key="ButtonPressedForegroundColor">#5F5F5F</Color>
+
+                            <Color x:Key="FakeWindowCaptionButtonBackground">#00FF00</Color>
+                        
+
+                        
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="HighContrast">
                             

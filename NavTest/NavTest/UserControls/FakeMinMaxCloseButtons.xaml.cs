@@ -44,7 +44,7 @@ namespace NavTest.UserControls
             // I tried to just use <ContentControl x:Name="MainContentControl" Style="{StaticResource WindowChromeStyle}" /> and hook into the buttons themselves but that did not work.
             // I don't know how to get a reference to the internal objects loaded by a style, eg.
             // var layoutRoot = MainContentControl.FindName("LayoutRoot");
-            
+
             // I also tried loading the style and getting a refernece that way.            
             /*
             var windowChromeStyle = Resources["WindowChromeStyle"] as Style;
@@ -61,11 +61,30 @@ namespace NavTest.UserControls
             }
             */
 
+            /*
+            var fakeWindowCaptionButton = Resources["FakeWindowCaptionButton"] as Style;
+            foreach (Microsoft.UI.Xaml.Setter setter in fakeWindowCaptionButton.BasedOn.Setters)
+            {
+                if (setter.Value.GetType() == typeof(Microsoft.UI.Xaml.Controls.ControlTemplate))
+                {
+                    var controlTemplate = setter.Value as Microsoft.UI.Xaml.Controls.ControlTemplate;
+
+///                    var value = controlTemplate.GetValue(Border.propery);
+
+                    break;
+                }
+            }
+            */
+
+
+            /*
             MinimizeButton.Click += MinimizeButton_Click;
             MaximizeButton.Click += MaximizeButton_Click;
             CloseButton.Click += CloseButton_Click;
+            */
         }
 
+        /*
         void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(((App)Application.Current).MainWindow);
@@ -88,6 +107,7 @@ namespace NavTest.UserControls
                 VisualStateManager.GoToState(MaximizeButton, "WindowStateMaximized", false);
             }
         }
+        */
 
         void CloseButton_Click(object sender, RoutedEventArgs e)
         {

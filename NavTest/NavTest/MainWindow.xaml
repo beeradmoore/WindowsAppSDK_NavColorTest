@@ -5,27 +5,32 @@
     xmlns:local="using:NavTest"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    >
+    
+    
 
     <Grid x:Name="RootGrid" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0" x:Name="TitlebarGrid" Background="{ThemeResource BackgroundLevel0}">
-            <TextBlock Text="App Title" VerticalAlignment="Center" HorizontalAlignment="Left" />
-        </Grid>
         
-        <NavigationView Grid.Row="1" x:Name="MainNavigationView" Background="{ThemeResource BackgroundLevel0}" IsBackButtonVisible="Collapsed">
+        <Grid Grid.Row="0" x:Name="AppTitleBar" Background="{ThemeResource TitleBarBackground}">
+            <TextBlock x:Name="AppTitle" Text="NavTest" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource CaptionTextBlockStyle}" />
+        </Grid>
 
+
+        <!--Background="{ThemeResource BackgroundLevel0}"-->
+        <NavigationView Grid.Row="1" x:Name="MainNavigationView" Background="{ThemeResource TitleBarBackground}"  IsBackButtonVisible="Collapsed">
+         
             <Grid
                     x:Name="grid"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Canvas.ZIndex="0">
 
-                <Frame x:Name="PageContent" />
+                <Frame x:Name="PageContent" Margin="20" />
 
             </Grid>
         </NavigationView>

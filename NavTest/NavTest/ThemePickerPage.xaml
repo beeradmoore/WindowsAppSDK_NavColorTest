@@ -5,12 +5,13 @@
     xmlns:local="using:NavTest"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="using:NavTest.UserControls"
     mc:Ignorable="d"
-    Background="{ThemeResource BackgroundLevel1}"
+   
     >
-
+    
     <Grid>
-        <StackPanel>
+        <StackPanel Grid.Row="0">
             <RadioButton x:Name="SystemRadioButton" Content="System" Tag="System" Checked="ThemeRadioButton_Checked" GroupName="Theme" />
             <RadioButton x:Name="DarkRadioButton" Content="Dark" Tag="Dark" Checked="ThemeRadioButton_Checked" GroupName="Theme" />
             <RadioButton x:Name="LightRadioButton" Content="Light" Tag="Light" Checked="ThemeRadioButton_Checked" GroupName="Theme" />
