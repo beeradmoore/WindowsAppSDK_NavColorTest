@@ -95,7 +95,7 @@ namespace NavTest
                 var appWindow = GetAppWindowForCurrentWindow();
                 var appWindowTitleBar = appWindow.TitleBar;
 
-                /*
+                
                 appWindowTitleBar.ButtonBackgroundColor = (Color)theme["ButtonBackgroundColor"];
                 appWindowTitleBar.ButtonForegroundColor = (Color)theme["ButtonForegroundColor"];
                 appWindowTitleBar.ButtonHoverBackgroundColor = (Color)theme["ButtonHoverBackgroundColor"];
@@ -104,7 +104,7 @@ namespace NavTest
                 appWindowTitleBar.ButtonInactiveForegroundColor = (Color)theme["ButtonInactiveForegroundColor"];
                 appWindowTitleBar.ButtonPressedBackgroundColor = (Color)theme["ButtonPressedBackgroundColor"];
                 appWindowTitleBar.ButtonPressedForegroundColor = (Color)theme["ButtonPressedForegroundColor"];
-                */
+                
             }
             else
             {
@@ -135,7 +135,7 @@ namespace NavTest
                 var appWindow = GetAppWindowForCurrentWindow();
                 var appWindowTitleBar = appWindow.TitleBar;
 
-                /*
+                
                 appWindowTitleBar.ButtonBackgroundColor = (Color)theme["ButtonBackgroundColor"];
                 appWindowTitleBar.ButtonForegroundColor = (Color)theme["ButtonForegroundColor"];
                 appWindowTitleBar.ButtonHoverBackgroundColor = (Color)theme["ButtonHoverBackgroundColor"];
@@ -144,7 +144,7 @@ namespace NavTest
                 appWindowTitleBar.ButtonInactiveForegroundColor = (Color)theme["ButtonInactiveForegroundColor"];
                 appWindowTitleBar.ButtonPressedBackgroundColor = (Color)theme["ButtonPressedBackgroundColor"];
                 appWindowTitleBar.ButtonPressedForegroundColor = (Color)theme["ButtonPressedForegroundColor"];
-                */
+                
 
                 /*
                 BackgroundColor
